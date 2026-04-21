@@ -6,6 +6,7 @@
   <title>BestByPar.com | Tips&amp;Tricks</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div id="wrapper">
 
@@ -71,7 +72,7 @@
                     Watch full lesson →
                     </a>
                 </div>
-
+            </div>
             <div class="about-box">
               <h2>Pre-Shot Routine</h2>
               <p>
@@ -114,9 +115,38 @@
             </div>
           </div>
         </article>
+      <article class="blog-post hidden-post" id="extra-post" style="margin-top: 40px;">
+        <div class="intro-row">
+          <div class="tip-media">
+            <video controls preload="metadata">
+              <source src="Creating tempo. Heres a simple drill that really helped me improve my overall tempo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+            </video>
 
+          <div class="video-box">
+            <a href="https://www.youtube.com/shorts/l3GhL_ryg9c" target="_blank">
+              Watch full lesson →
+            </a>
+          </div>
+        </div>
+
+        <div class="about-box">
+          <h2>Tempo & Smooth Swing</h2>
+          <p>
+            One of the biggest differences between inconsistent and consistent golfers is tempo.
+            Many players rush the downswing, which leads to poor contact and loss of control.
+            A smooth, steady rhythm helps your body stay connected and your swing stay on plane.
+          </p>
+          <p>
+            Think of your swing as a 3:1 ratio—your backswing should take about three times as long
+            as your downswing. Focus on staying relaxed and letting the club do the work.
+            If your finish is balanced and controlled, your tempo was likely in a good place.
+          </p>
+        </div>
+      </div>
+    </article>
         <div class="load-posts">
-          <a href="#">Load More Posts</a>
+          <a href="#" id="loadMoreBtn">Load More Posts</a>
         </div>
 
       </section>
@@ -136,5 +166,17 @@
     </footer>
 
   </div>
+
+<script>
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
+  const extraPost = document.getElementById("extra-post");
+
+  loadMoreBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    extraPost.style.display = "block";
+    loadMoreBtn.style.display = "none";
+  });
+</script>
+
 </body>
 </html>

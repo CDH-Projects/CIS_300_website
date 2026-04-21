@@ -30,7 +30,7 @@
       <section class="blog-shell">
 
         <article class="blog-post">
-          <div class="post-date">4/14/2026</div>
+          <div class="post-date">4/15/2026</div>
 
           <div class="post-entry">
             <p>
@@ -44,6 +44,17 @@
 
           <a href="#" class="comment-button">Click to leave a Comment</a>
 
+          <div class="comment-form hidden-form">
+            <input type="text" class="username" placeholder="Username" />
+            <input type="text" class="iron" placeholder="Favorite Iron (ex: 7-iron)" />
+            <input type="text" class="handicap" placeholder="Handicap" />
+            <textarea class="commentText" placeholder="Write your comment..."></textarea>
+            <button class="submitComment">Submit</button>
+          </div>
+
+
+
+
           <div class="comment-card">
             <p>
               <strong>UpDawg311:</strong>
@@ -51,7 +62,8 @@
               Stick with it, consistency comes with time and patience.
             </p>
             <p class="comment-meta">Favorite Iron: 9-iron / Handicap: 56</p>
-            <a href="#" class="reply-link">-&gt; Reply</a>
+            <a href="#" class="reply-button">-&gt; Reply</a>
+            <div class="replies"></div>
           </div>
 
           <div class="comment-card">
@@ -61,7 +73,8 @@
               Keep grinding, it’ll click eventually, just don’t quit now.
             </p>
             <p class="comment-meta">Favorite Iron: 7-iron / Handicap: 42</p>
-            <a href="#" class="reply-link">-&gt; Reply</a>
+            <a href="#" class="reply-button">-&gt; Reply</a>
+            <div class="replies"></div>
           </div>
 
           <div class="comment-card">
@@ -71,13 +84,49 @@
               in flashes. Stay patient and trust the process, you’re improving.
             </p>
             <p class="comment-meta">Favorite Iron: 8-iron / Handicap: 35</p>
-            <a href="#" class="reply-link">-&gt; Reply</a>
+            <a href="#" class="reply-button">-&gt; Reply</a>
+            <div class="replies"></div>
+          </div>
+        </article>
+        
+        <article class="blog-post hidden-post" id="extra-blog-post" style="margin-top: 40px;">
+          <div class="post-date">4/08/2026</div>
+
+          <div class="post-entry">
+            <p>
+              Today felt a little better. My contact was still inconsistent, but I started
+              to notice that when I stayed patient and kept my tempo smooth, the ball flight
+              improved. It was not perfect, but it felt more repeatable.
+            </p>
+            <p class="post-author">–Chris Hensley</p>
+          </div>
+
+          <a href="#" class="comment-button">Click to leave a Comment</a>
+
+            <div class="comment-form hidden-form">
+              <input type="text" class="username" placeholder="Username" />
+              <input type="text" class="iron" placeholder="Favorite Iron (ex: 7-iron)" />
+              <input type="text" class="handicap" placeholder="Handicap" />
+              <textarea class="commentText" placeholder="Write your comment..."></textarea>
+              <button class="submitComment">Submit</button>
+            </div>
+
+
+          <div class="comment-card">
+            <p>
+              <strong>TempoFan12:</strong>
+              That sounds like real progress. The shots might not all be there yet,
+              but noticing a repeatable pattern is a big step.
+            </p>
+            <p class="comment-meta">Favorite Iron: 7-iron / Handicap: 24</p>
+            <a href="#" class="reply-button">Reply</a>
+            <div class="replies"></div>
           </div>
         </article>
 
-        <div class="load-posts">
-          <a href="#">Load More Posts</a>
-        </div>
+      <div class="load-posts">
+        <a href="#" id="loadMoreBlogBtn">Load More Posts</a>
+      </div>
 
       </section>
     </main>
@@ -96,5 +145,117 @@
     </footer>
 
   </div>
+  <script>
+    document.addEventListener("click", function(e) {
+      if (e.target.classList.contains("comment-button")) {
+        e.preventDefault();
+
+        const blogPost = e.target.closest(".blog-post");
+        const form = blogPost.querySelector(".comment-form");
+
+        form.style.display = "block";
+      }
+
+      if (e.target.classList.contains("submitComment")) {
+        const blogPost = e.target.closest(".blog-post");
+        const form = blogPost.querySelector(".comment-form");
+
+        const username = form.querySelector(".username").value;
+        const iron = form.querySelector(".iron").value;
+        const handicap = form.querySelector(".handicap").value;
+        const commentText = form.querySelector(".commentText").value;
+
+        if (!username || !iron || !handicap || !commentText) {
+          alert("Please fill out all fields");
+          return;
+        }
+
+        const newComment = document.createElement("div");
+        newComment.classList.add("comment-card");
+
+        newComment.innerHTML = `
+          <p><strong>${username}:</strong> ${commentText}</p>
+          <p class="comment-meta">Favorite Iron: ${iron} / Handicap: ${handicap}</p>
+          <a href="#" class="reply-button">Reply</a>
+          <div class="replies"></div>
+        `;
+
+        form.insertAdjacentElement("afterend", newComment);
+
+        form.style.display = "none";
+        form.querySelector(".username").value = "";
+        form.querySelector(".iron").value = "";
+        form.querySelector(".handicap").value = "";
+        form.querySelector(".commentText").value = "";
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener("click", function(e) {
+      if (e.target.classList.contains("reply-button")) {
+        e.preventDefault();
+
+        const commentCard = e.target.closest(".comment-card");
+
+        if (commentCard.querySelector(".reply-form")) return;
+
+        const form = document.createElement("div");
+        form.classList.add("reply-form");
+
+        form.innerHTML = `
+          <input type="text" placeholder="Username" class="reply-username" />
+          <input type="text" placeholder="Favorite Iron" class="reply-iron" />
+          <input type="text" placeholder="Handicap" class="reply-handicap" />
+          <textarea placeholder="Write a reply..." class="reply-text"></textarea>
+          <button class="submit-reply">Submit</button>
+        `;
+
+        commentCard.appendChild(form);
+      }
+
+      if (e.target.classList.contains("submit-reply")) {
+        const form = e.target.closest(".reply-form");
+        const commentCard = e.target.closest(".comment-card");
+
+        const username = form.querySelector(".reply-username").value;
+        const iron = form.querySelector(".reply-iron").value;
+        const handicap = form.querySelector(".reply-handicap").value;
+        const text = form.querySelector(".reply-text").value;
+
+        if (!username || !iron || !handicap || !text) {
+          alert("Please fill out all fields");
+          return;
+        }
+
+        const reply = document.createElement("div");
+        reply.classList.add("comment-card");
+
+        reply.innerHTML = `
+          <p><strong>${username}:</strong> ${text}</p>
+          <p class="comment-meta">Favorite Iron: ${iron} / Handicap: ${handicap}</p>
+          <a href="#" class="reply-button">Reply</a>
+          <div class="replies"></div>
+        `;
+
+        commentCard.querySelector(".replies").appendChild(reply);
+        form.remove();
+      }
+    });
+  </script>
+
+
+  <script>
+    const loadMoreBlogBtn = document.getElementById("loadMoreBlogBtn");
+    const extraBlogPost = document.getElementById("extra-blog-post");
+
+    loadMoreBlogBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      extraBlogPost.style.display = "block";
+      loadMoreBlogBtn.style.display = "none";
+    });
+  </script>
+
+
+
 </body>
 </html>

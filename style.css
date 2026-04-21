@@ -41,9 +41,8 @@ body {
 
 .intro-row {
   display: flex;
-  align-items: center;       
-  justify-content: space-between;
-  gap: 60px; 
+  align-items: flex-start; 
+  gap: 40px;
 }
 
 
@@ -72,11 +71,8 @@ p {
 }
 
 .tip-media {
-  flex: 1.2;
-  max-width: 300px;
-  display: flex;              
-  flex-direction: column;     
-  gap: 10px;                  
+  flex: 1;          /* smaller portion */
+  max-width: 350px; /* control size */            
 }
 
 
@@ -159,6 +155,50 @@ p {
   color: var(--text);
 }
 
+.hidden-post {
+  display: none;
+}
+
+.hidden-form {
+  display: none;
+}
+
+.comment-form {
+  margin-top: 15px;
+  padding: 15px;
+  border: 1.5px solid var(--text);
+  border-radius: 12px;
+  background-color: rgba(47, 120, 60, 0.35);
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+.comment-form button {
+  padding: 8px 12px;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.replies {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.reply-card {
+  border-left: 2px solid var(--accent);
+  padding-left: 10px;
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
 
 .intro-section {
   display: flex;
@@ -170,22 +210,21 @@ p {
 }
 
 .about-box {
-  flex: 1.8;   
-  border: 1.5px solid var(--text);
-  border-radius: 30px;
-  padding: 24px;
-  background-color: rgba(47, 120, 60, 0.35);  
+  flex: 2.2;        /* takes more space than video */
+  padding: 28px;    /* slightly larger feel */
 }
 
 .about-box h2 {
-  font-size: 2rem;
-  color: var(--text);
-  margin-bottom: 12px;
+  font-size: 2.2rem;
 }
 
 .about-box p {
-  font-size: 1rem;
-  max-width: 95%;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.hidden-tournament {
+  display: none;
 }
 
 .profile-circle {
@@ -207,8 +246,20 @@ p {
   border-radius: 50%;
 }
 
+.leaderboard-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.leaderboard-link:hover {
+  text-decoration: underline;
+}
+
 .content-section {
-  margin: 0 30px 50px;
+  margin: 0 auto 50px;
 }
 
 .section-label {
@@ -322,7 +373,7 @@ p {
   font-weight: bold;
 }
 
-.reply-link {
+.reply-button {
   display: block;
   text-align: right;
   color: var(--text);
@@ -331,7 +382,7 @@ p {
   font-weight: bold;
 }
 
-.reply-link:hover {
+.reply-button:hover {
   color: var(--accent);
 }
 
@@ -378,6 +429,65 @@ p {
   font-size: 1rem;
   color: var(--text);
 }
+
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+.leaderboard-box {
+  max-width: 760px;
+  margin: 20px auto 0;
+  margin-top: 20px;
+  padding: 24px;
+  border: 1.5px solid var(--text);
+  border-radius: 18px;
+  background-color: rgba(47, 120, 60, 0.25);
+}
+
+.leaderboard-box h2 {
+  margin-bottom: 18px;
+  color: var(--text);
+  font-size: 1.8rem;
+}
+
+.leaderboard-table {
+  font-size: 0.85rem;
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  color: var(--text);
+  background-color: rgba(10, 40, 15, 0.55);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 10px 8px;
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(245, 255, 247, 0.25);
+  font-size: 0.95rem;
+}
+
+.leaderboard-table th {
+  color: var(--accent);
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.leaderboard-table tbody tr:hover {
+  background-color: rgba(124, 255, 158, 0.08);
+}
+
+.score-red {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
 
 /* Responsive */
 @media (max-width: 900px) {
